@@ -8,25 +8,6 @@ def header(number):
 
 
 def assemble(string):
-    mnemonics = {
-        'POK': 0x00,
-        'LON': 0x01,
-        'DEL': 0x02,
-        'LOF': 0x03,
-        'JMP': 0x04,
-        'ADB': 0x05,
-        'ADI': 0x06,
-        'ADL': 0x07,
-        'JEB': 0x08,
-        'JLB': 0x09,
-        'JGB': 0x0A,
-        'JEI': 0x0B,
-        'JLI': 0x0C,
-        'JGI': 0x0D,
-        'SCW': 0x0E,
-        'SCB': 0x0F,
-        'HLT': 0x10,
-    }
     mnemonics = {value.name: key for key, value in ins.instructions.items()}
     try:
         return mnemonics[string]
@@ -74,6 +55,7 @@ def get_label_positions(numbers):
     for token in numbers:
         for label in token[1]:
             labels[label] = i
+            print(f'{label}: {i}')
         if type(token[0]) is int:
             i += 1
         else:
